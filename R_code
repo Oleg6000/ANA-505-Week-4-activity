@@ -1,0 +1,24 @@
+# Task 1: Get a dataset from Base R: ChickWeight and save it as a dataframe with a new name
+Oleg_ChickWeight <- ChickWeight
+# Task 2: See the top rows of the data
+head(Oleg_ChickWeight)
+# Task 3: Install and call the package dplyr
+install.packages ("dplyr") 
+library(dplyr)
+# Task 4: 'Select' just the weight and Time columns
+Oleg_ChickWeight_selected <- select(Oleg_ChickWeight, weight, Time)
+# Task 5: Save the two columns as a new dataframe and give it a new name
+Oleg_ChickWeight_wt_time <- Oleg_ChickWeight_selected
+# Task 6: Deselect the Time column
+Oleg_ChickWeight_wt <- select(Oleg_ChickWeight_wt_time, -Time)
+# Task 7: Rename 'weight' to 'ounces'
+Oleg_ChickWeight_ounces <- rename(Oleg_ChickWeight_wt, ounces = weight)
+# Task 8: Name a new dataframe that includes the 'ounces' column
+Oleg_ChickWeight_new <- Oleg_ChickWeight_ounces
+# Task 9: Includes only rows where chick = 1
+Oleg_ChickWeight_chick1 <- filter(Oleg_ChickWeight_new, chick == 1)
+# Task 10: Group the data by Diet
+Oleg_ChickWeight_grouped <- group_by(Oleg_ChickWeight, Diet)
+# Additional task: Using the `summarise` function from dplyr to get the average weight by diet
+Oleg_ChickWeight_summary <- Oleg_ChickWeight_grouped %>%
+  summarise(Avg_weight = mean(weight, na.rm = TRUE))
